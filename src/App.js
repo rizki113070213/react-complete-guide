@@ -13,6 +13,23 @@ class App extends React.Component {
     showPersons: false
   }
 
+  changeHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id
+    })
+
+    const person = {...this.state.persons[personIndex]}
+    // const person = Object.assign({}, this.state.persons[personIndex])
+    person.name = event.target.value
+
+    const persons = [...this.state.persons]
+    persons[personIndex] = person
+
+    this.setState({
+      persons: persons
+    })
+  }
+
   deletePersonHandler = (personIndex) => {
     // const persons = this.state.persons.slice()
     const persons = [...this.state.persons]
@@ -48,6 +65,7 @@ class App extends React.Component {
                 name={person.name}
                 age={person.age}
                 click={() => this.deletePersonHandler(index)}
+                change={(event) => this.changeHandler(event, person.id)}
               />)}
             )
           }
