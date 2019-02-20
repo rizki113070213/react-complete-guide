@@ -55,24 +55,21 @@ class App extends React.Component {
     let persons = null
 
     if(this.state.showPersons) {
-        persons = (
-          <div>
-            <Person
-              name={this.state.persons[0].name}
-              age={this.state.persons[0].age}
-              click={this.handleClick.bind(this, "Fakhrul")}
-            />
-            <Person
-              name={this.state.persons[1].name}
-              age={this.state.persons[1].age}
-              change={this.handleChange.bind(this)}
-            />
-            <Person
-              name={this.state.persons[2].name}
-              age={this.state.persons[2].age}>My hobby is cooking
-            </Person>
-          </div>
-        )
+      persons = (
+        <div>
+          {this.state.persons.map(person => {
+            return(
+              <Person
+                key={person.name}
+                name={person.name}
+                age={person.age}
+                click={person.name === "Ruli" ? this.handleClick.bind(this, "Fakhrul") : null}
+                change={this.handleChange.bind(this)}
+              />)}
+            )
+          }
+        </div>
+      )
     }
 
     return (
