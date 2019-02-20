@@ -13,24 +13,10 @@ class App extends React.Component {
     showPersons: false
   }
 
-  handleClick(newName) {
-    this.setState({
-      persons: [
-        {name: newName, age: 35},
-        {name: "Rizki", age: 32},
-        {name: "Mita", age: 30}
-      ]
-    })
-  }
-
-  handleChange(event) {
-    this.setState({
-      persons: [
-        {name: "Ruli", age: 35},
-        {name: event.target.value, age: 32},
-        {name: "Mita", age: 30}
-      ]
-    })
+  deletePersonHandler = (personIndex) => {
+    const persons = this.state.persons
+    persons.splice(personIndex, 1)
+    this.setState({persons: persons})
   }
 
   togglePersonsHandler = () => {
@@ -57,14 +43,13 @@ class App extends React.Component {
     if(this.state.showPersons) {
       persons = (
         <div>
-          {this.state.persons.map(person => {
+          {this.state.persons.map((person, index) => {
             return(
               <Person
-                key={person.name}
+                key={index}
                 name={person.name}
                 age={person.age}
-                click={person.name === "Ruli" ? this.handleClick.bind(this, "Fakhrul") : null}
-                change={this.handleChange.bind(this)}
+                click={() => this.deletePersonHandler(index)}
               />)}
             )
           }
