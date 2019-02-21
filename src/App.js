@@ -46,7 +46,8 @@ class App extends React.Component {
 
   render() {
     const style = {
-      backgroundColor: 'aqua',
+      backgroundColor: 'green',
+      color: 'white',
       border: '1px solid #00f',
       padding: '8px',
       cursor: 'pointer'
@@ -71,6 +72,8 @@ class App extends React.Component {
           }
         </div>
       )
+
+      style.backgroundColor = "red"
     }
 
     return (
