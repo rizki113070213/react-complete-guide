@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import Radium from 'radium';
 import Person from "./Person/Person";
 
 class App extends React.Component {
@@ -50,7 +51,11 @@ class App extends React.Component {
       color: 'white',
       border: '1px solid #00f',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      }
     }
 
     const buttonText = this.state.showPersons ? "Hide Person!" : "Show Person!"
@@ -74,6 +79,10 @@ class App extends React.Component {
       )
 
       style.backgroundColor = "red"
+      style[':hover'] = {
+        backgroundColor: 'salmon',
+        color: 'black'
+      }
     }
 
     let classes = []
@@ -95,4 +104,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default Radium(App);
